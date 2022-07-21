@@ -1,30 +1,30 @@
-import messageSet from './messageSet.js';
-import fs from 'fs';
-
-const lestedCoin = undefined;
-const lestedCoinMemory = undefined;
-
-fs.readFile('src/bots/gate/luanchCoinGate.json', 'utf-8', (err, data) => {
-    if (err) throw err;
-
-    return lestedCoin = data[0];
-});
-
-fs.readFile('src/usecase/gate/memoryCoinGate.json', 'utf-8', (err, data) => {
-    if (err) throw err;
-
-    const lestedCoinMemory = data;
-
-    newsCoinGate(lestedCoinMemory)
-});
-
-function dados(lestedCoin, lestedCoinMemory) {
-
-}
+// const luanchCoinGate = require('../../bots/gate/luanchCoinGate.json');
+// const memoryCoinGate = require('./memoryCoinGate.json');
+// const messageSet = require('./messageSet.js');
+const fs = require('fs/promises');
 
 
-async function newsCoinGate() {
+async function newsCoinGate(newsCoin) {
+    const data = await fs.readFile('src/usecase/gate/memoryCoinGate.json', 'utf8', (err, data) => {
+        if (err) console.log(err);
 
-}
+        return data;
+    });
 
-export default newsCoinGate
+    const memoryCoinGate = await JSON.parse(data);
+    const lestedCoin = newsCoin;
+
+    if (lestedCoin.href !== memoryCoinGate.href) {
+        fs.writeFile('src/usecase/gate/memoryCoinGate.json', JSON.stringify(lestedCoin, null, 2), err => {
+            if (err) throw new Error('something went wrong');
+        });
+
+        console.log(lestedCoin)
+        //return messageSet.messageSet(lestedCoin);
+    } else {
+        return console.log('mesmo post');
+    }
+
+};
+
+module.exports.newsCoinGate = newsCoinGate;

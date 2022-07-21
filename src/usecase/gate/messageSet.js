@@ -1,5 +1,7 @@
-export default function messageSet(lestedCoin) {
-    const message = lestedCoin.href;
+function messageSet(lestedCoin) {
+    const message = lestedCoin;
 
-    return console.log(message);
+    return console.log(message + ' deu certo');
 }
+
+module.exports.messageSet = messageSet;

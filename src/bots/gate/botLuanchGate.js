@@ -1,12 +1,12 @@
-import puppeteer from 'puppeteer';
-import fs from 'fs';
-import newsCoinGate from '../../usecase/gate/newsCoinGate.js';
+const puppeteer = require('puppeteer');
+const fs = require('fs');
+const newsCoinGate = require('../../usecase/gate/newsCoinGate.js')
 
 setInterval(
     async function botLuanchGate() {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(0);
+        page.setDefaultNavigationTimeout(0);
 
         await page.goto('https://www.gate.io/pt/articlelist/ann/0');
 
@@ -22,15 +22,15 @@ setInterval(
             return listCoin
         });
 
-
         fs.writeFile('src/bots/gate/luanchCoinGate.json', JSON.stringify(listCoin, null, 2), err => {
             if (err) throw new Error('something went wrong');
 
             console.log('Json created');
 
-            newsCoinGate();
+            newsCoinGate.newsCoinGate(listCoin[0]);
         });
 
         await browser.close();
+
     }, 15000
 );
