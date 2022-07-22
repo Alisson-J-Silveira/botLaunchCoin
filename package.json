@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/bots/gate/botLuanchGate.js"
+    "start": "node src/bots/gate/botLuanchGate.js"
   },
   "keywords": [],
   "author": "",
