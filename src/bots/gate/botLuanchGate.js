@@ -4,7 +4,7 @@ const newsCoinGate = require('../../usecase/gate/newsCoinGate.js')
 
 setInterval(
     async function botLuanchGate() {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });;
         const page = await browser.newPage();
         page.setDefaultNavigationTimeout(0);
 
