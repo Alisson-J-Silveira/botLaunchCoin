@@ -1,8 +1,5 @@
-// const luanchCoinGate = require('../../bots/gate/luanchCoinGate.json');
-// const memoryCoinGate = require('./memoryCoinGate.json');
-// const messageSet = require('./messageSet.js');
 const fs = require('fs/promises');
-
+const messageSet = require('../../telegramAPI/sendMessage.js');
 
 async function newsCoinGate(newsCoin) {
     const data = await fs.readFile('src/usecase/gate/memoryCoinGate.json', 'utf8', (err, data) => {
@@ -19,8 +16,7 @@ async function newsCoinGate(newsCoin) {
             if (err) throw new Error('something went wrong');
         });
 
-        console.log(lestedCoin)
-        //return messageSet.messageSet(lestedCoin);
+        return messageSet.messageSet(lestedCoin);
     } else {
         return console.log('mesmo post');
     }
