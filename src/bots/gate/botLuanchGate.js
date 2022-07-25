@@ -11,6 +11,7 @@ setInterval(
         await page.goto('https://www.gate.io/pt/articlelist/ann/0');
 
         await page.click('[data-cate="newlisted"]');
+        await page.waitForNavigation();
 
         const listCoin = await page.evaluate(() => {
             const nodeCoin = document.querySelectorAll('div.entry a');
