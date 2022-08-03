@@ -35,5 +35,5 @@ setInterval(
 
         await browser.close();
 
-    }, 15000
+    }, 60000
 );
